@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RecordsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Format">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Speed" Type="int" />
+          <Property Name="Size" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Label">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Mrecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ArtistId" Type="int" />
+          <Property Name="CountryId" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReleaseID" Type="int" />
+          <Property Name="LabelId" Type="int" />
+          <Property Name="FormatID" Type="int" />
+        </EntityType>
+        <EntityType Name="RecordGenre">
+          <Key>
+            <PropertyRef Name="IdMRecord" />
+            <PropertyRef Name="IdGenre" />
+          </Key>
+          <Property Name="IdMRecord" Type="int" Nullable="false" />
+          <Property Name="IdGenre" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RecordTracks">
+          <Key>
+            <PropertyRef Name="MRecordID" />
+            <PropertyRef Name="TrackID" />
+          </Key>
+          <Property Name="MRecordID" Type="int" Nullable="false" />
+          <Property Name="TrackID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Release">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Month" Type="datetime" />
+          <Property Name="Year" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="TrackID" />
+          </Key>
+          <Property Name="TrackID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Mrecord_Release">
+          <End Role="Release" Type="Self.Release" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Release">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="ReleaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToArtist">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToCountry">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToFormat">
+          <End Role="Format" Type="Self.Format" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Format">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="FormatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToLabel">
+          <End Role="Label" Type="Self.Label" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Label">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="LabelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordGenre_ToGenre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="RecordGenre" Type="Self.RecordGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RecordGenre">
+              <PropertyRef Name="IdGenre" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordGenre_ToMrecord">
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="1" />
+          <End Role="RecordGenre" Type="Self.RecordGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mrecord">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RecordGenre">
+              <PropertyRef Name="IdMRecord" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordTracks_ToMrecord">
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="1" />
+          <End Role="RecordTracks" Type="Self.RecordTracks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mrecord">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RecordTracks">
+              <PropertyRef Name="MRecordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecordTracks_ToTrack">
+          <End Role="Track" Type="Self.Track" Multiplicity="1" />
+          <End Role="RecordTracks" Type="Self.RecordTracks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Track">
+              <PropertyRef Name="TrackID" />
+            </Principal>
+            <Dependent Role="RecordTracks">
+              <PropertyRef Name="TrackID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RecordsDBModelStoreContainer">
+          <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Format" EntityType="Self.Format" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Label" EntityType="Self.Label" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mrecord" EntityType="Self.Mrecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecordGenre" EntityType="Self.RecordGenre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecordTracks" EntityType="Self.RecordTracks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Release" EntityType="Self.Release" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Mrecord_Release" Association="Self.FK_Mrecord_Release">
+            <End Role="Release" EntitySet="Release" />
+            <End Role="Mrecord" EntitySet="Mrecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToArtist" Association="Self.FK_Mrecord_ToArtist">
+            <End Role="Artist" EntitySet="Artist" />
+            <End Role="Mrecord" EntitySet="Mrecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToCountry" Association="Self.FK_Mrecord_ToCountry">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Mrecord" EntitySet="Mrecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToFormat" Association="Self.FK_Mrecord_ToFormat">
+            <End Role="Format" EntitySet="Format" />
+            <End Role="Mrecord" EntitySet="Mrecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToLabel" Association="Self.FK_Mrecord_ToLabel">
+            <End Role="Label" EntitySet="Label" />
+            <End Role="Mrecord" EntitySet="Mrecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordGenre_ToGenre" Association="Self.FK_RecordGenre_ToGenre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="RecordGenre" EntitySet="RecordGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordGenre_ToMrecord" Association="Self.FK_RecordGenre_ToMrecord">
+            <End Role="Mrecord" EntitySet="Mrecord" />
+            <End Role="RecordGenre" EntitySet="RecordGenre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordTracks_ToMrecord" Association="Self.FK_RecordTracks_ToMrecord">
+            <End Role="Mrecord" EntitySet="Mrecord" />
+            <End Role="RecordTracks" EntitySet="RecordTracks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecordTracks_ToTrack" Association="Self.FK_RecordTracks_ToTrack">
+            <End Role="Track" EntitySet="Track" />
+            <End Role="RecordTracks" EntitySet="RecordTracks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RecordsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mrecords" Relationship="Self.FK_Mrecord_ToArtist" FromRole="Artist" ToRole="Mrecord" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mrecords" Relationship="Self.FK_Mrecord_ToCountry" FromRole="Country" ToRole="Mrecord" />
+        </EntityType>
+        <EntityType Name="Format">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Speed" Type="Int32" />
+          <Property Name="Size" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Mrecords" Relationship="Self.FK_Mrecord_ToFormat" FromRole="Format" ToRole="Mrecord" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mrecords" Relationship="Self.RecordGenre" FromRole="Genre" ToRole="Mrecord" />
+        </EntityType>
+        <EntityType Name="Label">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mrecords" Relationship="Self.FK_Mrecord_ToLabel" FromRole="Label" ToRole="Mrecord" />
+        </EntityType>
+        <EntityType Name="Mrecord">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ArtistId" Type="Int32" />
+          <Property Name="CountryId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseID" Type="Int32" />
+          <Property Name="LabelId" Type="Int32" />
+          <Property Name="FormatID" Type="Int32" />
+          <NavigationProperty Name="Artist" Relationship="Self.FK_Mrecord_ToArtist" FromRole="Mrecord" ToRole="Artist" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Mrecord_ToCountry" FromRole="Mrecord" ToRole="Country" />
+          <NavigationProperty Name="Format" Relationship="Self.FK_Mrecord_ToFormat" FromRole="Mrecord" ToRole="Format" />
+          <NavigationProperty Name="Label" Relationship="Self.FK_Mrecord_ToLabel" FromRole="Mrecord" ToRole="Label" />
+          <NavigationProperty Name="Release" Relationship="Self.FK_Mrecord_Release" FromRole="Mrecord" ToRole="Release" />
+          <NavigationProperty Name="Genres" Relationship="Self.RecordGenre" FromRole="Mrecord" ToRole="Genre" />
+          <NavigationProperty Name="Tracks" Relationship="Self.RecordTracks" FromRole="Mrecord" ToRole="Track" />
+        </EntityType>
+        <EntityType Name="Release">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="DateTime" Precision="3" />
+          <Property Name="Year" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Mrecords" Relationship="Self.FK_Mrecord_Release" FromRole="Release" ToRole="Mrecord" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="TrackID" />
+          </Key>
+          <Property Name="TrackID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mrecords" Relationship="Self.RecordTracks" FromRole="Track" ToRole="Mrecord" />
+        </EntityType>
+        <Association Name="FK_Mrecord_ToArtist">
+          <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Artist">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="ArtistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToCountry">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToFormat">
+          <End Role="Format" Type="Self.Format" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Format">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="FormatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToLabel">
+          <End Role="Label" Type="Self.Label" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Label">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="LabelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_Release">
+          <End Role="Release" Type="Self.Release" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Release">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="ReleaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RecordGenre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+        </Association>
+        <Association Name="RecordTracks">
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <End Role="Track" Type="Self.Track" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="RecordsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Artists" EntityType="Self.Artist" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Formats" EntityType="Self.Format" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Labels" EntityType="Self.Label" />
+          <EntitySet Name="Mrecords" EntityType="Self.Mrecord" />
+          <EntitySet Name="Releases" EntityType="Self.Release" />
+          <EntitySet Name="Tracks" EntityType="Self.Track" />
+          <AssociationSet Name="FK_Mrecord_ToArtist" Association="Self.FK_Mrecord_ToArtist">
+            <End Role="Artist" EntitySet="Artists" />
+            <End Role="Mrecord" EntitySet="Mrecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToCountry" Association="Self.FK_Mrecord_ToCountry">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Mrecord" EntitySet="Mrecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToFormat" Association="Self.FK_Mrecord_ToFormat">
+            <End Role="Format" EntitySet="Formats" />
+            <End Role="Mrecord" EntitySet="Mrecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToLabel" Association="Self.FK_Mrecord_ToLabel">
+            <End Role="Label" EntitySet="Labels" />
+            <End Role="Mrecord" EntitySet="Mrecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_Release" Association="Self.FK_Mrecord_Release">
+            <End Role="Release" EntitySet="Releases" />
+            <End Role="Mrecord" EntitySet="Mrecords" />
+          </AssociationSet>
+          <AssociationSet Name="RecordGenre" Association="Self.RecordGenre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Mrecord" EntitySet="Mrecords" />
+          </AssociationSet>
+          <AssociationSet Name="RecordTracks" Association="Self.RecordTracks">
+            <End Role="Mrecord" EntitySet="Mrecords" />
+            <End Role="Track" EntitySet="Tracks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecordsDBModelStoreContainer" CdmEntityContainer="RecordsDBEntities">
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="RecordsDBModel.Artist">
+              <MappingFragment StoreEntitySet="Artist">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="RecordsDBModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Formats">
+            <EntityTypeMapping TypeName="RecordsDBModel.Format">
+              <MappingFragment StoreEntitySet="Format">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Speed" ColumnName="Speed" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="RecordsDBModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Labels">
+            <EntityTypeMapping TypeName="RecordsDBModel.Label">
+              <MappingFragment StoreEntitySet="Label">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mrecords">
+            <EntityTypeMapping TypeName="RecordsDBModel.Mrecord">
+              <MappingFragment StoreEntitySet="Mrecord">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ReleaseID" ColumnName="ReleaseID" />
+                <ScalarProperty Name="LabelId" ColumnName="LabelId" />
+                <ScalarProperty Name="FormatID" ColumnName="FormatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Releases">
+            <EntityTypeMapping TypeName="RecordsDBModel.Release">
+              <MappingFragment StoreEntitySet="Release">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tracks">
+            <EntityTypeMapping TypeName="RecordsDBModel.Track">
+              <MappingFragment StoreEntitySet="Track">
+                <ScalarProperty Name="TrackID" ColumnName="TrackID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="RecordGenre" TypeName="RecordsDBModel.RecordGenre" StoreEntitySet="RecordGenre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="Id" ColumnName="IdGenre" />
+            </EndProperty>
+            <EndProperty Name="Mrecord">
+              <ScalarProperty Name="ID" ColumnName="IdMRecord" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="RecordTracks" TypeName="RecordsDBModel.RecordTracks" StoreEntitySet="RecordTracks">
+            <EndProperty Name="Mrecord">
+              <ScalarProperty Name="ID" ColumnName="MRecordID" />
+            </EndProperty>
+            <EndProperty Name="Track">
+              <ScalarProperty Name="TrackID" ColumnName="TrackID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
