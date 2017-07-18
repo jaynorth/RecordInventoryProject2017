@@ -1,4 +1,5 @@
 ﻿using RecordsDataModel;
+using RecordsDataModel.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace test
         static void Main(string[] args)
         {
 
-            RecordsDBEntities context = new RecordsDBEntities();
+            RecordsDBEntities1 context = new RecordsDBEntities1();
 
             List<Artist> ListArtist = new List<Artist>(context.Artists);
 

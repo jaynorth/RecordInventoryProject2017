@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecordsDataModel
+namespace RecordsDataModel.EntityModels
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RecordsDBEntities : DbContext
+    public partial class RecordsDBEntities1 : DbContext
     {
-        public RecordsDBEntities()
-            : base("name=RecordsDBEntities")
+        public RecordsDBEntities1()
+            : base("name=RecordsDBEntities1")
         {
         }
     

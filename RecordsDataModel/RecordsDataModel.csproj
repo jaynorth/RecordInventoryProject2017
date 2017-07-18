@@ -37,55 +37,14 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="RecordsModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RecordsModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="packages.config" />
-    <None Include="RecordsModel.edmx.diagram">
-      <DependentUpon>RecordsModel.edmx</DependentUpon>
+    <EntityDeploy Include="EntityModels\RecordsModelEF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RecordsModelEF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityModels\RecordsModelEF.edmx.diagram">
+      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Artist.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Country.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Format.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Genre.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Label.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Mrecord.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RecordsModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RecordsModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RecordsModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RecordsModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RecordsModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Release.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Track.cs">
-      <DependentUpon>RecordsModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -104,19 +63,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RecordsModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RecordsModel.Context.cs</LastGenOutput>
-      <DependentUpon>RecordsModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="RecordsModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RecordsModel.edmx</DependentUpon>
-      <LastGenOutput>RecordsModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Folder Include="Model\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityModels\Artist.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\Country.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\Format.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\Genre.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\Label.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\Mrecord.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\RecordsModelEF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecordsModelEF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\RecordsModelEF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\RecordsModelEF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\Release.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityModels\Track.cs">
+      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EntityModels\RecordsModelEF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
+      <LastGenOutput>RecordsModelEF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityModels\RecordsModelEF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
+      <LastGenOutput>RecordsModelEF.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

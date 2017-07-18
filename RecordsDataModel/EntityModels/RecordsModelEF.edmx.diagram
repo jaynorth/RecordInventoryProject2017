@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e847dcd2c4de404ba6364ef846116706" Name="Diagram1">
-        <EntityTypeShape EntityType="RecordsDBModel.Artist" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecordsDBModel.Country" Width="1.5" PointX="0.5" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecordsDBModel.Format" Width="1.5" PointX="7.375" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecordsDBModel.Genre" Width="1.5" PointX="7.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecordsDBModel.Label" Width="1.5" PointX="0.5" PointY="5.625" IsExpanded="true" />
+      <Diagram DiagramId="2afc0ddfd7794e83992380745a2076a1" Name="Diagram1">
+        <EntityTypeShape EntityType="RecordsDBModel.Artist" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecordsDBModel.Country" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecordsDBModel.Format" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecordsDBModel.Genre" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecordsDBModel.Label" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RecordsDBModel.Mrecord" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecordsDBModel.Release" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecordsDBModel.Release" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RecordsDBModel.Track" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="RecordsDBModel.FK_Mrecord_ToArtist" ManuallyRouted="false" />
         <AssociationConnector Association="RecordsDBModel.FK_Mrecord_ToCountry" ManuallyRouted="false" />

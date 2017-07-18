@@ -7,15 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecordsDataModel
+namespace RecordsDataModel.EntityModels
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Genre
+    public partial class Label
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genre()
+        public Label()
         {
             this.Mrecords = new HashSet<Mrecord>();
         }

@@ -7,22 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecordsDataModel
+namespace RecordsDataModel.EntityModels
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Format
+    public partial class Track
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Format()
+        public Track()
         {
             this.Mrecords = new HashSet<Mrecord>();
         }
     
-        public int Id { get; set; }
-        public Nullable<int> Speed { get; set; }
-        public string Size { get; set; }
+        public int TrackID { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mrecord> Mrecords { get; set; }

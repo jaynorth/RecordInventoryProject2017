@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RecordsDataModel
+namespace RecordsDataModel.EntityModels
 {
     using System;
     using System.Collections.Generic;
