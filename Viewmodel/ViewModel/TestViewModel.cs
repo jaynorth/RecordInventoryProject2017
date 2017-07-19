@@ -16,15 +16,10 @@ namespace Viewmodel
         {
            _context = new RecordsDBEntities();
 
-           
-
-
-           List<Mrecord> ListRecords = new List<Mrecord>(_context.Mrecords);
-            ListArtists = new List<Artist>(_context.Artists);
-            CurrentArtist = ListArtists[0];
-            //_title = CurrentArtist.Title;
-            
-        
+           _listRecords = new List<Mrecord>(_context.Mrecords);
+            _listArtists = new List<Artist>(_context.Artists);
+            _currentArtist = ListArtists[0];
+            _currentRecord = ListRecords[0];
 
         }
 
@@ -53,13 +48,13 @@ namespace Viewmodel
             set { _currentArtist = value; }
         }
 
-        //private string _title;
+        private Mrecord _currentRecord;
 
-        //public string Title
-        //{
-        //    get { return _title; }
-        //    set { _title = value; }
-        //}
+        public Mrecord CurrentRecord
+        {
+            get { return _currentRecord; }
+            set { _currentRecord = value; }
+        }
 
 
 

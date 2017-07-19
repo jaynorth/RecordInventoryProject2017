@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="393.033" Width="679.918">
     <Grid>
-        <DataGrid x:Name="dataGridx" HorizontalAlignment="Left" Margin="175,142,0,0" VerticalAlignment="Top"  ItemsSource="{ Binding  ListArtists}"
- Height="69" Width="288" AutoGenerateColumns="True"/>
+        <DataGrid x:Name="dataGridx" HorizontalAlignment="Center" Margin="175,142,0,0" VerticalAlignment="Center"  ItemsSource="{ Binding  ListRecords}"
+ Height="auto" Width="auto" AutoGenerateColumns="True"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="100,250,0,0" TextWrapping="Wrap" Text="{Binding CurrentArtist.Title}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="175,266,0,0" TextWrapping="Wrap" Text="{Binding CurrentRecord.Title}" VerticalAlignment="Top" Width="270" Height="41"/>
     </Grid>
 </Window>
