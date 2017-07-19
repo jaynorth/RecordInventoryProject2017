@@ -108,7 +108,6 @@
     <Compile Include="EntityModels\Track.cs">
       <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModels\Artist_addOn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="EntityModels\RecModel.Context.tt">

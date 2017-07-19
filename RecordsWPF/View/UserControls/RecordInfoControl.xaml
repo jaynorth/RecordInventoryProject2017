@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="RecordsWPF.View.RecordInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RecordsWPF.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Name="lblID" Content="ID" Grid.Row="0" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="0" Grid.Column="2"></TextBox>
+        <Label Name="lbArtist" Content="Artist" Grid.Row="1" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="1" Grid.Column="2"></TextBox>
+        <Label Name="lblAlbum" Content="Album" Grid.Row="2" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="2" Grid.Column="2"></TextBox>
+        <Label Name="lblFormat" Content="Format" Grid.Row="3" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="3" Grid.Column="2"></TextBox>
+        <Label Name="lblGenre" Content="Genre" Grid.Row="4" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="4" Grid.Column="2"></TextBox>
+        <Label Name="lblLabel" Content="Label" Grid.Row="5" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="5" Grid.Column="2"></TextBox>
+        <Label Name="lblRelease" Content="Release" Grid.Row="6" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="6" Grid.Column="2"></TextBox>
+        <Label Name="lblCountry" Content="Country" Grid.Row="7" Grid.Column="1"></Label>
+        <TextBox Text="test" Grid.Row="7" Grid.Column="2"></TextBox>
+
+    </Grid>
+</UserControl>

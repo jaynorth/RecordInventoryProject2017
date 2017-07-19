@@ -56,9 +56,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RecordsDataModel\RecordsDataModel.csproj">
+    <ProjectReference Include="..\RecordsDataModel\RI.Data.csproj">
       <Project>{70d86f38-5364-44a9-bfda-0bd74b2ec40f}</Project>
-      <Name>RecordsDataModel</Name>
+      <Name>RI.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
