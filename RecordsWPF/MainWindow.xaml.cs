@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecordsDataModel.EntityModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Viewmodel;
 
 namespace RecordsWPF
 {
@@ -23,6 +25,10 @@ namespace RecordsWPF
         public MainWindow()
         {
             InitializeComponent();
+            RecordsDBEntities context = new RecordsDBEntities();
+
+            DataContext = new TestViewModel();
+            
         }
     }
 }

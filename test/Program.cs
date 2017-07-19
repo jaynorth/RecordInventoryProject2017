@@ -13,7 +13,7 @@ namespace test
         static void Main(string[] args)
         {
 
-            RecordsDBEntities1 context = new RecordsDBEntities1();
+            RecordsDBEntities context = new RecordsDBEntities();
 
             List<Artist> ListArtist = new List<Artist>(context.Artists);
 

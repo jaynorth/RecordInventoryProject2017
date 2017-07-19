@@ -13,10 +13,10 @@ namespace RecordsDataModel.EntityModels
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RecordsDBEntities1 : DbContext
+    public partial class RecordsDBEntities : DbContext
     {
-        public RecordsDBEntities1()
-            : base("name=RecordsDBEntities1")
+        public RecordsDBEntities()
+            : base("name=RecordsDBEntities")
         {
         }
     

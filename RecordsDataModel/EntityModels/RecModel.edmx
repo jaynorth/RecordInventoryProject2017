@@ -390,7 +390,7 @@
           <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
           <End Role="Track" Type="Self.Track" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="RecordsDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RecordsDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Artists" EntityType="Self.Artist" />
           <EntitySet Name="Countries" EntityType="Self.Country" />
           <EntitySet Name="Formats" EntityType="Self.Format" />
@@ -433,7 +433,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RecordsDBModelStoreContainer" CdmEntityContainer="RecordsDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="RecordsDBModelStoreContainer" CdmEntityContainer="RecordsDBEntities">
           <EntitySetMapping Name="Artists">
             <EntityTypeMapping TypeName="RecordsDBModel.Artist">
               <MappingFragment StoreEntitySet="Artist">

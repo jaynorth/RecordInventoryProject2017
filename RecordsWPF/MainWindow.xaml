@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RecordsWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="393.033" Width="679.918">
     <Grid>
-        
+        <DataGrid x:Name="dataGridx" HorizontalAlignment="Left" Margin="175,142,0,0" VerticalAlignment="Top"  ItemsSource="{ Binding  ListArtists}"
+ Height="69" Width="288" AutoGenerateColumns="True"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="100,250,0,0" TextWrapping="Wrap" Text="{Binding CurrentArtist.Title}" VerticalAlignment="Top"/>
     </Grid>
 </Window>

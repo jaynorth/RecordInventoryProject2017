@@ -36,14 +36,14 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="EntityModels\RecordsModelEF.edmx">
+    <EntityDeploy Include="EntityModels\RecModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RecordsModelEF.Designer.cs</LastGenOutput>
+      <LastGenOutput>RecModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="EntityModels\RecordsModelEF.edmx.diagram">
-      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
+    <None Include="EntityModels\RecModel.edmx.diagram">
+      <DependentUpon>RecModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -70,55 +70,56 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityModels\Artist.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Country.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Format.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Genre.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Label.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Mrecord.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModels\RecordsModelEF.Context.cs">
+    <Compile Include="EntityModels\RecModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RecordsModelEF.Context.tt</DependentUpon>
+      <DependentUpon>RecModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModels\RecordsModelEF.cs">
+    <Compile Include="EntityModels\RecModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityModels\RecordsModelEF.Designer.cs">
+    <Compile Include="EntityModels\RecModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
+      <DependentUpon>RecModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Release.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Track.cs">
-      <DependentUpon>RecordsModelEF.tt</DependentUpon>
+      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModels\Artist_addOn.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EntityModels\RecordsModelEF.Context.tt">
+    <Content Include="EntityModels\RecModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
-      <LastGenOutput>RecordsModelEF.Context.cs</LastGenOutput>
+      <DependentUpon>RecModel.edmx</DependentUpon>
+      <LastGenOutput>RecModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EntityModels\RecordsModelEF.tt">
+    <Content Include="EntityModels\RecModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RecordsModelEF.edmx</DependentUpon>
-      <LastGenOutput>RecordsModelEF.cs</LastGenOutput>
+      <DependentUpon>RecModel.edmx</DependentUpon>
+      <LastGenOutput>RecModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
