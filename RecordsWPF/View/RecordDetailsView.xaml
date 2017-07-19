@@ -7,9 +7,17 @@
         xmlns:Mycontrols="clr-namespace:RecordsWPF.View"
         mc:Ignorable="d"
         Title="RecordDetailsView" Height="600" Width="900">
-    
+
     <Grid ShowGridLines="True">
         <Mycontrols:RecordInfoControl Grid.Row="1" Grid.Column="3"></Mycontrols:RecordInfoControl>
+        <Image x:Name="image" Height="250" Width="250"  Grid.Row="1" Grid.Column="1" />
+        <ListView x:Name="listView" Grid.Column="1" HorizontalAlignment="Center" Height="100"  Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Center" Width="320"  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="5*"></RowDefinition>
@@ -18,12 +26,12 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="40*"></ColumnDefinition>
-            <ColumnDefinition Width="10*"></ColumnDefinition>
-            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="40*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        
+
+
     </Grid>
 </Window>

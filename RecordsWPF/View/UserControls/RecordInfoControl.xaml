@@ -26,21 +26,26 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Name="lblID" Content="ID" Grid.Row="0" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="0" Grid.Column="2"></TextBox>
+        <TextBox Text="{Binding CurrentRecord.ID}" Grid.Row="0" Grid.Column="2"></TextBox>
         <Label Name="lbArtist" Content="Artist" Grid.Row="1" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="1" Grid.Column="2"></TextBox>
+        <TextBox Text="{Binding CurrentRecord.Artist.Title}" Grid.Row="1" Grid.Column="2"></TextBox>
         <Label Name="lblAlbum" Content="Album" Grid.Row="2" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="2" Grid.Column="2"></TextBox>
+        <TextBox Text="{Binding CurrentRecord.Title}" Grid.Row="2" Grid.Column="2"></TextBox>
         <Label Name="lblFormat" Content="Format" Grid.Row="3" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="3" Grid.Column="2"></TextBox>
-        <Label Name="lblGenre" Content="Genre" Grid.Row="4" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="4" Grid.Column="2"></TextBox>
+        <WrapPanel HorizontalAlignment="Left" Grid.Row="3" Grid.Column="2">
+            <Label  Content="Size" ></Label>
+            <TextBox Text="{Binding CurrentRecord.Format.Size}" ></TextBox>
+            <Label  Content="Speed" ></Label>
+        <TextBox Text="{Binding CurrentRecord.Format.Speed}" ></TextBox>
+        </WrapPanel>
+            <Label Name="lblGenre" Content="Genre" Grid.Row="4" Grid.Column="1"></Label>
+        <TextBox Text="{Binding CurrentRecord.Genre.Name}" Grid.Row="4" Grid.Column="2"></TextBox>
         <Label Name="lblLabel" Content="Label" Grid.Row="5" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="5" Grid.Column="2"></TextBox>
+        <TextBox Text="{Binding CurrentRecord.Label.Name}" Grid.Row="5" Grid.Column="2"></TextBox>
         <Label Name="lblRelease" Content="Release" Grid.Row="6" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="6" Grid.Column="2"></TextBox>
+        <TextBox Text="{Binding CurrentRecord.ReleaseID}" Grid.Row="6" Grid.Column="2"></TextBox>
         <Label Name="lblCountry" Content="Country" Grid.Row="7" Grid.Column="1"></Label>
-        <TextBox Text="test" Grid.Row="7" Grid.Column="2"></TextBox>
+        <TextBox Text="{Binding CurrentRecord.Country.Name}" Grid.Row="7" Grid.Column="2"></TextBox>
 
     </Grid>
 </UserControl>

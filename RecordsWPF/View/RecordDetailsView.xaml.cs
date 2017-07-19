@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Viewmodel.ViewModel;
 
 namespace RecordsWPF.View
 {
@@ -22,6 +23,7 @@ namespace RecordsWPF.View
         public RecordDetailsView()
         {
             InitializeComponent();
+            DataContext = new RecordsDetailViewModel();
         }
     }
 }
