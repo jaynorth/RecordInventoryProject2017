@@ -69,6 +69,9 @@
     <Compile Include="View\RecordDetailsView.xaml.cs">
       <DependentUpon>RecordDetailsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\UserControls\NewRecordUserControl.xaml.cs">
+      <DependentUpon>NewRecordUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UserControls\RecordInfoControl.xaml.cs">
       <DependentUpon>RecordInfoControl.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\RecordDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControls\NewRecordUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

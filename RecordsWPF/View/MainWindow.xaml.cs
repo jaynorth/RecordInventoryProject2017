@@ -1,4 +1,5 @@
 ﻿using RecordsDataModel.EntityModels;
+using RecordsWPF.View.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +23,28 @@ namespace RecordsWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private NewRecordUserControl nruc;
         public MainWindow()
         {
             InitializeComponent();
+
+            nruc = null;
             RecordsDBEntities context = new RecordsDBEntities();
 
             DataContext = new TestViewModel();
             
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (nruc == null)
+            {
+                nruc = new NewRecordUserControl();
+
+            }
+
+            StackMainFrame.Children.Clear();
+            StackMainFrame.Children.Add(nruc);
         }
     }
 }

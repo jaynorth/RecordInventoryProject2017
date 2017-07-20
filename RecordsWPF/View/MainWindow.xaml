@@ -6,5 +6,17 @@
         xmlns:local="clr-namespace:RecordsWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="393.033" Width="800">
-    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
+    <Menu Grid.Row="0" Height="30" VerticalAlignment="Top">
+        <MenuItem Header="New Record" Click="MenuItem_Click"></MenuItem>
+        <MenuItem Header="Record List"></MenuItem>
+    </Menu>
+    <StackPanel Name="StackMainFrame" Background="gray" Grid.Row="1" Height="Auto"></StackPanel>
+        <StatusBar Grid.Row="2" Height="30"></StatusBar>
+    </Grid>
 </Window>
