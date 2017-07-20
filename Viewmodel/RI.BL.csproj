@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewModel\Helpers\BaseViewModel.cs" />
     <Compile Include="ViewModel\NewRecordViewModel.cs" />
     <Compile Include="ViewModel\RecordsDetailViewModel.cs" />
     <Compile Include="ViewModel\TestViewModel.cs" />

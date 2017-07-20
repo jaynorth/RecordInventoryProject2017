@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Viewmodel.ViewModel.Helpers;
 
 namespace Viewmodel.ViewModel
 {
-    public class RecordsDetailViewModel
+    public class RecordsDetailViewModel : BaseViewModel
     {
-        private RecordsDBEntities _context;
+        
         public RecordsDetailViewModel()
         {
-            _context = new RecordsDBEntities();
+           
 
             _listRecords = new List<Mrecord>(_context.Mrecords);
             _listArtists = new List<Artist>(_context.Artists);

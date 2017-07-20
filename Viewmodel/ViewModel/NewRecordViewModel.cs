@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Viewmodel.ViewModel.Helpers;
 
 namespace Viewmodel.ViewModel
 {
-    public class NewRecordViewModel
+    public class NewRecordViewModel : BaseViewModel
     {
-        private RecordsDBEntities _context;
+       
         public NewRecordViewModel()
         {
-            _context = new RecordsDBEntities();
+
             _listArtists = new List<Artist>(_context.Artists
                 .OrderBy(a =>a.Title));
 
