@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Viewmodel.ViewModel;
 
 namespace RecordsWPF.View.UserControls
 {
@@ -23,6 +24,7 @@ namespace RecordsWPF.View.UserControls
         public NewRecordUserControl()
         {
             InitializeComponent();
+            DataContext = new NewRecordViewModel();
         }
     }
 }
