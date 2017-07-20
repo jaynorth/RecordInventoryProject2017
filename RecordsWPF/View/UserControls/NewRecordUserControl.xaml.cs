@@ -32,7 +32,8 @@ namespace RecordsWPF.View.UserControls
             //Add Text to ComboBox ListArtist
             String artistName = artistTextBox.Text;
             NewRecordViewModel n = new NewRecordViewModel();
-            n.AddNew(artistName);
+            n.Add(artistName);
+            artistTextBox.Clear();
 
         }
     }

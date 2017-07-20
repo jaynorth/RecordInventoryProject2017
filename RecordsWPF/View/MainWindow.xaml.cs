@@ -29,9 +29,9 @@ namespace RecordsWPF
             InitializeComponent();
 
             nruc = null;
-            RecordsDBEntities context = new RecordsDBEntities();
+    
 
-            DataContext = new TestViewModel();
+            
             
         }
 

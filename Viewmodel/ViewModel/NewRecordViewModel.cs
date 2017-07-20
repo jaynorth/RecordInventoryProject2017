@@ -27,8 +27,34 @@ namespace Viewmodel.ViewModel
             set { _listArtists = value; }
         }
 
-        public void AddNew(String name)
+        public void Add(String name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("name should not be empty", "name");
+            }
+
+            //process string
+            name = name.Trim();
+
+            bool existInList = false;
+
+            foreach (var artist in ListArtists)
+            {
+
+                if (artist.Title.ToUpper() == name.ToUpper())
+                {
+                    existInList = true;
+                    break;
+                }
+            }
+
+            if (existInList)
+            {
+                throw new ArgumentException("name already is in the list", "name");
+
+            }
+
             Artist a = new Artist();
             a.Title = name;
             _context.Artists.Add(a);
