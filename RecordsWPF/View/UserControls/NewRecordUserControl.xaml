@@ -28,11 +28,11 @@
         <Label Name="lblID" Content="ID" Grid.Row="0" Grid.Column="1"></Label>
         <TextBox Text="{Binding CurrentRecord.ID}" Grid.Row="0" Grid.Column="2"></TextBox>
         <Label Name="lbArtist" Content="Select Artist" Grid.Row="1" Grid.Column="1"></Label>
-        <ComboBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ListArtists}" DisplayMemberPath="Title" ></ComboBox>
+        <ComboBox Name="artistsCombo" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ListArtists}" DisplayMemberPath="Title" ></ComboBox>
         <Label  Content="Or Add a new" Grid.Row="2" Grid.Column="1"></Label>
         
-            <TextBox Text="" Grid.Row="2" Grid.Column="2" ></TextBox>
-        <Button Grid.Row="2" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right"></Button>
+            <TextBox Name="artistTextBox" Text="" Grid.Row="2" Grid.Column="2" ></TextBox>
+        <Button Grid.Row="2" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Click="Button_Click"></Button>
        
        
         <!--

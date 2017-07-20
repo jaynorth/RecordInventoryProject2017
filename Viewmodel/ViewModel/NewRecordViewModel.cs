@@ -26,7 +26,13 @@ namespace Viewmodel.ViewModel
             set { _listArtists = value; }
         }
 
-
+        public void AddNew(String name)
+        {
+            Artist a = new Artist();
+            a.Title = name;
+            _context.Artists.Add(a);
+            _context.SaveChanges();
+        }
 
 
     }
