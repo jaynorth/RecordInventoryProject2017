@@ -32,8 +32,8 @@
         <Label  Content="Or Add a new" Grid.Row="2" Grid.Column="1"></Label>
         
             <TextBox Name="artistTextBox" Text="" Grid.Row="2" Grid.Column="2" ></TextBox>
-        <Button Grid.Row="2" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Click="Button_Click"></Button>
-       
+        <Button Grid.Row="2" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNew}" CommandParameter="{Binding ElementName=artistTextBox,Path=Text}"></Button>
+        
         <!--
         <Label Name="lblAlbum" Content="Album" Grid.Row="2" Grid.Column="1"></Label>
         <TextBox Text="{Binding CurrentRecord.Title}" Grid.Row="2" Grid.Column="2"></TextBox>

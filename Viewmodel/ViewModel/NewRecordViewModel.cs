@@ -1,4 +1,5 @@
-﻿using RecordsDataModel.EntityModels;
+﻿using GalaSoft.MvvmLight.CommandWpf;
+using RecordsDataModel.EntityModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,13 +16,22 @@ namespace Viewmodel.ViewModel
         public NewRecordViewModel()
         {
             Init();
+            
         }
 
         private void Init()
         {
             _listArtists = new ObservableCollection<Artist>(_context.Artists
                 .OrderBy(a => a.Title));
+            AddNew = new RelayCommand<string>((s) => Add(s));
         }
+
+        public RelayCommand<string> AddNew { get; set; }
+
+        public void Test(String text)
+        {
+            Console.WriteLine("this is a test in console: " + text);
+        } 
 
 
         private ObservableCollection<Artist> _listArtists;
