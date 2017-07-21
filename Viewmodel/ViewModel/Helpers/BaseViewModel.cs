@@ -22,7 +22,7 @@ namespace Viewmodel.ViewModel.Helpers
 
             public event PropertyChangedEventHandler PropertyChanged;
 
-            protected void FirePropertyChanged([CallerMemberName] string propertyName = null)
+            protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
             {
                 if (PropertyChanged != null)
                 {

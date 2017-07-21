@@ -1,6 +1,7 @@
 ﻿using RecordsDataModel.EntityModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,21 +11,29 @@ namespace Viewmodel.ViewModel
 {
     public class NewRecordViewModel : BaseViewModel
     {
-       
+
         public NewRecordViewModel()
         {
-
-            _listArtists = new List<Artist>(_context.Artists
-                .OrderBy(a =>a.Title));
-
+            Init();
         }
 
-        private List<Artist> _listArtists;
+        private void Init()
+        {
+            _listArtists = new ObservableCollection<Artist>(_context.Artists
+                .OrderBy(a => a.Title));
+        }
 
-        public List<Artist> ListArtists
+
+        private ObservableCollection<Artist> _listArtists;
+
+        public ObservableCollection<Artist> ListArtists
         {
             get { return _listArtists; }
-            set { _listArtists = value; }
+            set
+            {
+                _listArtists = value;
+               // OnPropertyChanged();
+            }
         }
 
         public void Add(String name)
@@ -41,7 +50,6 @@ namespace Viewmodel.ViewModel
 
             foreach (var artist in ListArtists)
             {
-
                 if (artist.Title.ToUpper() == name.ToUpper())
                 {
                     existInList = true;
@@ -52,13 +60,15 @@ namespace Viewmodel.ViewModel
             if (existInList)
             {
                 throw new ArgumentException("name already is in the list", "name");
-
             }
 
             Artist a = new Artist();
             a.Title = name;
+
             _context.Artists.Add(a);
+            _listArtists.Add(a);
             _context.SaveChanges();
+           // Init();
         }
 
 

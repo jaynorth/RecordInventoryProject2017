@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RecordsDataModel.EntityModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,20 +22,21 @@ namespace RecordsWPF.View.UserControls
     /// </summary>
     public partial class NewRecordUserControl : UserControl
     {
+        private NewRecordViewModel newRecord;
         public NewRecordUserControl()
         {
             InitializeComponent();
-            DataContext = new NewRecordViewModel();
+            newRecord = new NewRecordViewModel();
+            DataContext = newRecord;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //Add Text to ComboBox ListArtist
-            String artistName = artistTextBox.Text;
-            NewRecordViewModel n = new NewRecordViewModel();
-            n.Add(artistName);
-            artistTextBox.Clear();
+            string artistName = artistTextBox.Text;
+            newRecord.Add(artistName);
 
         }
+
     }
 }
