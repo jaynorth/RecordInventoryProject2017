@@ -30,13 +30,7 @@ namespace RecordsWPF.View.UserControls
             DataContext = newRecord;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //Add Text to ComboBox ListArtist
-            string artistName = artistTextBox.Text;
-            newRecord.Add(artistName);
-
-        }
+       
 
     }
 }

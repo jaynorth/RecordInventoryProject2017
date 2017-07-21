@@ -42,7 +42,7 @@ namespace Viewmodel.ViewModel
             set
             {
                 _listArtists = value;
-               // OnPropertyChanged();
+              // OnPropertyChanged();
             }
         }
 
@@ -77,6 +77,7 @@ namespace Viewmodel.ViewModel
 
             _context.Artists.Add(a);
             _listArtists.Add(a);
+            _listArtists.OrderBy(l => l.Title);
             _context.SaveChanges();
            // Init();
         }
