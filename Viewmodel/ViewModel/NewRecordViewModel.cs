@@ -17,7 +17,7 @@ namespace Viewmodel.ViewModel
         public NewRecordViewModel()
         {
             Init();
-            
+
         }
 
         private void Init()
@@ -45,8 +45,6 @@ namespace Viewmodel.ViewModel
 
             AddNewRecord = new RelayCommand(AddRecord);
 
-            // CurrentRecord.Artist.Title
-
         }
 
         public RelayCommand<string> AddNewArtist { get; set; }
@@ -67,7 +65,9 @@ namespace Viewmodel.ViewModel
         public Mrecord CurrentRecord
         {
             get { return _currentRecord; }
-            set { _currentRecord = value;
+            set
+            {
+                _currentRecord = value;
 
                 OnPropertyChanged();
             }
@@ -92,7 +92,8 @@ namespace Viewmodel.ViewModel
         public ObservableCollection<Country> ListCountries
         {
             get { return _listCountries; }
-            set {
+            set
+            {
                 _listCountries = value;
                 OnPropertyChanged();
             }
@@ -103,7 +104,9 @@ namespace Viewmodel.ViewModel
         public ObservableCollection<Mrecord> ListRecords
         {
             get { return _listRecords; }
-            set { _listRecords = value;
+            set
+            {
+                _listRecords = value;
                 OnPropertyChanged();
             }
         }
@@ -117,8 +120,8 @@ namespace Viewmodel.ViewModel
             set
             {
                 _listArtists = value;
-              OnPropertyChanged();
-                
+                OnPropertyChanged();
+
             }
         }
 
@@ -131,7 +134,6 @@ namespace Viewmodel.ViewModel
             {
                 _listLabels = value;
                 OnPropertyChanged();
-
             }
         }
 
@@ -164,9 +166,7 @@ namespace Viewmodel.ViewModel
 
             cr.Add(countryName, ListCountries);
 
-            
-
-         }
+        }
 
         public void AddRecord()
         {
