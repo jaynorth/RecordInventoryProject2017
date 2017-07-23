@@ -11,15 +11,14 @@
         <EntityTypeShape EntityType="RecordsDBModel.Genre" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RecordsDBModel.Label" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RecordsDBModel.Mrecord" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecordsDBModel.Release" Width="1.5" PointX="0.75" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RecordsDBModel.Track" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
         <AssociationConnector Association="RecordsDBModel.FK_Mrecord_ToArtist" ManuallyRouted="false" />
         <AssociationConnector Association="RecordsDBModel.FK_Mrecord_ToCountry" ManuallyRouted="false" />
         <AssociationConnector Association="RecordsDBModel.FK_Mrecord_ToFormat" ManuallyRouted="false" />
         <AssociationConnector Association="RecordsDBModel.FK_Mrecord_ToLabel" ManuallyRouted="false" />
-        <AssociationConnector Association="RecordsDBModel.FK_Mrecord_Release" ManuallyRouted="false" />
         <AssociationConnector Association="RecordsDBModel.RecordGenre" ManuallyRouted="false" />
         <AssociationConnector Association="RecordsDBModel.RecordTracks" ManuallyRouted="false" />
+        <AssociationConnector Association="RecordsDBModel.FK_Mrecord_ToGenre" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

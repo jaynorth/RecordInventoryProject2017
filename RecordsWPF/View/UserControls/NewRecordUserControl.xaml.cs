@@ -30,7 +30,50 @@ namespace RecordsWPF.View.UserControls
             DataContext = newRecord;
         }
 
-       
+        public object CurrentRecord { get; private set; }
 
+        private void artistsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = artistsCombo.SelectedIndex;
+            newRecord.CurrentRecord.ArtistId = newRecord.ListArtists[index].Id;
+
+        }
+
+        private void genresCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = genresCombo.SelectedIndex;
+            newRecord.CurrentRecord.GenreID = newRecord.ListGenres[index].Id;
+        }
+
+        private void labelsCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = labelsCombo.SelectedIndex;
+            newRecord.CurrentRecord.LabelId = newRecord.ListLabels[index].Id;
+        }
+
+        private void countriesCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = countriesCombo.SelectedIndex;
+            newRecord.CurrentRecord.CountryId = newRecord.ListCountries[index].Id;
+        }
+
+        private void albumNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            newRecord.CurrentRecord.Title = albumNameTextBox.Text;
+        }
+
+        private void ReleaseMonthCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = ReleaseMonthCombo.SelectedIndex;
+           
+            newRecord.CurrentRecord.ReleaseMonth = newRecord.MonthsArray[index];
+           // MessageBox.Show(newRecord.CurrentRecord.ReleaseMonth);
+        }
+
+        private void releaseYear_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            newRecord.CurrentRecord.ReleaseYear = releaseYear.Text;
+           // MessageBox.Show(newRecord.CurrentRecord.ReleaseYear);
+        }
     }
 }

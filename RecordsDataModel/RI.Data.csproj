@@ -72,6 +72,7 @@
     <Compile Include="EntityModels\Artist.cs">
       <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EntityModels\Artist_addon.cs" />
     <Compile Include="EntityModels\Country.cs">
       <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
@@ -101,9 +102,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RecModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="EntityModels\Release.cs">
-      <DependentUpon>RecModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityModels\Track.cs">
       <DependentUpon>RecModel.tt</DependentUpon>

@@ -76,6 +76,7 @@
     <Compile Include="Repository\LabelRepository.cs" />
     <Compile Include="Repository\GenreRepository.cs" />
     <Compile Include="Repository\ArtistRepository.cs" />
+    <Compile Include="Repository\MrecordRepository.cs" />
     <Compile Include="ViewModel\Helpers\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NewRecordViewModel.cs" />

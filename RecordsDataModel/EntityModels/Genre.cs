@@ -18,6 +18,7 @@ namespace RecordsDataModel.EntityModels
         public Genre()
         {
             this.Mrecords = new HashSet<Mrecord>();
+            this.Mrecords1 = new HashSet<Mrecord>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace RecordsDataModel.EntityModels
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Mrecord> Mrecords { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Mrecord> Mrecords1 { get; set; }
     }
 }

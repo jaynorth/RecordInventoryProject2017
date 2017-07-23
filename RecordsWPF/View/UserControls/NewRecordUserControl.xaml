@@ -36,41 +36,41 @@
         <TextBox Text="{Binding CurrentRecord.ID}" Grid.Row="0" Grid.Column="2"></TextBox>
         <!-- Artist -->
         <Label Name="lbArtist" Content="Select Artist" Grid.Row="1" Grid.Column="1"></Label>
-        <ComboBox Name="artistsCombo" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ListArtists}" DisplayMemberPath="Title"   ></ComboBox>
+        <ComboBox Name="artistsCombo" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ListArtists}" DisplayMemberPath="Title" SelectionChanged="artistsCombo_SelectionChanged"   ></ComboBox>
         <Label  Content="Or Add a new" Grid.Row="2" Grid.Column="1"></Label>
-        <TextBox Name="artistTextBox" Text="" Grid.Row="2" Grid.Column="2" ></TextBox>
+        <TextBox Name="artistTextBox" Text="{Binding ElementName=artistsCombo, Path=SelectedItem.Title}" Grid.Row="2" Grid.Column="2"  ></TextBox>
         <Button Grid.Row="2" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewArtist}" CommandParameter="{Binding ElementName=artistTextBox,Path=Text}"></Button>
         <!-- Album Name -->
         <Label  Content="Album/Single Title" Grid.Row="3" Grid.Column="1"></Label>
         
-        <TextBox Name="albumNameTextBox" Text="" Grid.Row="3" Grid.Column="2" ></TextBox>
+        <TextBox Name="albumNameTextBox" Text="" Grid.Row="3" Grid.Column="2" TextChanged="albumNameTextBox_TextChanged" ></TextBox>
        
         <!-- Genre -->
         <Label  Content="Select a Genre" Grid.Row="4" Grid.Column="1"></Label>
-        <ComboBox Name="genresCombo" Grid.Row="4" Grid.Column="2" ItemsSource="{Binding ListGenres}" SelectedItem="{Binding NewRecord.Genre}" DisplayMemberPath="Name"   ></ComboBox>
+        <ComboBox Name="genresCombo" Grid.Row="4" Grid.Column="2" ItemsSource="{Binding ListGenres}"  DisplayMemberPath="Name" SelectionChanged="genresCombo_SelectionChanged"   ></ComboBox>
         <Label  Content="Or Add a new one" Grid.Row="5" Grid.Column="1"></Label>
         <TextBox Name="genreTextBox" Grid.Row="5" Grid.Column="2" ></TextBox>
-        <Button Grid.Row="4" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewGenre}" CommandParameter="{Binding ElementName=genreTextBox,Path=Text}"></Button>
+        <Button Grid.Row="5" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewGenre}" CommandParameter="{Binding ElementName=genreTextBox,Path=Text}"></Button>
         <!-- Label -->
         <Label  Content="Select a Label" Grid.Row="6" Grid.Column="1"></Label>
-        <ComboBox Name="labelsCombo" Grid.Row="6" Grid.Column="2" ItemsSource="{Binding ListLabels}" DisplayMemberPath="Name"   ></ComboBox>
+        <ComboBox Name="labelsCombo" Grid.Row="6" Grid.Column="2" ItemsSource="{Binding ListLabels}"  DisplayMemberPath="Name" SelectionChanged="labelsCombo_SelectionChanged"   ></ComboBox>
         <Label  Content="Or Add a new one" Grid.Row="7" Grid.Column="1"></Label>
         <TextBox Name="labelTextBox" Grid.Row="7" Grid.Column="2"></TextBox>
-        <Button Grid.Row="6" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewLabel}" CommandParameter="{Binding ElementName=labelTextBox,Path=Text}"></Button>
+        <Button Grid.Row="7" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewLabel}" CommandParameter="{Binding ElementName=labelTextBox,Path=Text}"></Button>
         <!-- Country -->
         <Label  Content="Select a Country" Grid.Row="8" Grid.Column="1"></Label>
-        <ComboBox Name="countriesCombo" Grid.Row="8" Grid.Column="2" ItemsSource="{Binding ListCountries}" DisplayMemberPath="Name"   ></ComboBox>
+        <ComboBox Name="countriesCombo" Grid.Row="8" Grid.Column="2" ItemsSource="{Binding ListCountries}" DisplayMemberPath="Name" Height="20" VerticalAlignment="Top" SelectionChanged="countriesCombo_SelectionChanged" ></ComboBox>
         <Label  Content="Or Add a new one" Grid.Row="9" Grid.Column="1"></Label>
         <TextBox Name="countryTextBox" Grid.Row="9" Grid.Column="2"></TextBox>
-        <Button Grid.Row="8" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewCountry}" CommandParameter="{Binding ElementName=countryTextBox,Path=Text}"></Button>
+        <Button Grid.Row="9" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewCountry}" CommandParameter="{Binding ElementName=countryTextBox,Path=Text}"></Button>
 
         <!-- Release-->
         <Label  Content="Release Date" Grid.Row="10" Grid.Column="1"></Label>
         <StackPanel  Grid.Row="10" Grid.Column="2" Orientation="Horizontal">
             <Label Content="Month"></Label>
-            <ComboBox Name="ReleaseMonthCombo"  ItemsSource="{Binding MonthsArray}" Width="80" HorizontalAlignment="Left"  ></ComboBox>
+            <ComboBox Name="ReleaseMonthCombo"  ItemsSource="{Binding MonthsArray}"  Width="80" HorizontalAlignment="Left" SelectionChanged="ReleaseMonthCombo_SelectionChanged"  ></ComboBox>
             <Label Content="Year"></Label>
-            <TextBox Name="releaseYear" Width="80" HorizontalAlignment="Right"></TextBox>
+            <TextBox Name="releaseYear" Width="80" HorizontalAlignment="Right" TextChanged="releaseYear_TextChanged"></TextBox>
 
         </StackPanel>
         

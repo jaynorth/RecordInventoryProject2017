@@ -40,12 +40,12 @@ namespace Viewmodel.ViewModel
             MonthsArray = new string[] { "Unknown", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "december" };
 
             _listRecords = new ObservableCollection<Mrecord>(_context.Mrecords);
-            Mrecord newRecord = new Mrecord();
-            newRecord.ID = -1;
+            _currentRecord = new Mrecord();
+            _currentRecord.ID = -1;
 
             AddNewRecord = new RelayCommand(AddRecord);
 
-            
+            // CurrentRecord.Artist.Title
 
         }
 
@@ -61,6 +61,18 @@ namespace Viewmodel.ViewModel
         {
             Console.WriteLine("this is a test in console: " + text);
         }
+
+        private Mrecord _currentRecord;
+
+        public Mrecord CurrentRecord
+        {
+            get { return _currentRecord; }
+            set { _currentRecord = value;
+
+                OnPropertyChanged();
+            }
+        }
+
 
         private ObservableCollection<Genre> _listGenres;
 
@@ -152,11 +164,14 @@ namespace Viewmodel.ViewModel
 
             cr.Add(countryName, ListCountries);
 
+            
+
          }
 
         public void AddRecord()
         {
-
+            MrecordRepository mrec = new MrecordRepository();
+            mrec.Add(CurrentRecord);
         }
 
         private void ProcessStringInput(String s)

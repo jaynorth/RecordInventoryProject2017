@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RecordsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RecordsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Artist">
           <Key>
             <PropertyRef Name="Id" />
@@ -49,9 +49,11 @@
           <Property Name="ArtistId" Type="int" />
           <Property Name="CountryId" Type="int" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="ReleaseID" Type="int" />
           <Property Name="LabelId" Type="int" />
           <Property Name="FormatID" Type="int" />
+          <Property Name="GenreID" Type="int" />
+          <Property Name="ReleaseMonth" Type="nchar" MaxLength="10" />
+          <Property Name="ReleaseYear" Type="nchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="RecordGenre">
           <Key>
@@ -69,14 +71,6 @@
           <Property Name="MRecordID" Type="int" Nullable="false" />
           <Property Name="TrackID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Release">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Month" Type="datetime" />
-          <Property Name="Year" Type="datetime" />
-        </EntityType>
         <EntityType Name="Track">
           <Key>
             <PropertyRef Name="TrackID" />
@@ -84,18 +78,6 @@
           <Property Name="TrackID" Type="int" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Mrecord_Release">
-          <End Role="Release" Type="Self.Release" Multiplicity="0..1" />
-          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Release">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Mrecord">
-              <PropertyRef Name="ReleaseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Mrecord_ToArtist">
           <End Role="Artist" Type="Self.Artist" Multiplicity="0..1" />
           <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
@@ -129,6 +111,18 @@
             </Principal>
             <Dependent Role="Mrecord">
               <PropertyRef Name="FormatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mrecord_ToGenre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="GenreID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -201,12 +195,7 @@
           <EntitySet Name="Mrecord" EntityType="Self.Mrecord" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecordGenre" EntityType="Self.RecordGenre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecordTracks" EntityType="Self.RecordTracks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Release" EntityType="Self.Release" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Track" EntityType="Self.Track" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Mrecord_Release" Association="Self.FK_Mrecord_Release">
-            <End Role="Release" EntitySet="Release" />
-            <End Role="Mrecord" EntitySet="Mrecord" />
-          </AssociationSet>
           <AssociationSet Name="FK_Mrecord_ToArtist" Association="Self.FK_Mrecord_ToArtist">
             <End Role="Artist" EntitySet="Artist" />
             <End Role="Mrecord" EntitySet="Mrecord" />
@@ -217,6 +206,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Mrecord_ToFormat" Association="Self.FK_Mrecord_ToFormat">
             <End Role="Format" EntitySet="Format" />
+            <End Role="Mrecord" EntitySet="Mrecord" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToGenre" Association="Self.FK_Mrecord_ToGenre">
+            <End Role="Genre" EntitySet="Genre" />
             <End Role="Mrecord" EntitySet="Mrecord" />
           </AssociationSet>
           <AssociationSet Name="FK_Mrecord_ToLabel" Association="Self.FK_Mrecord_ToLabel">
@@ -240,8 +233,7 @@
             <End Role="RecordTracks" EntitySet="RecordTracks" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RecordsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -277,6 +269,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Mrecords" Relationship="Self.RecordGenre" FromRole="Genre" ToRole="Mrecord" />
+          <NavigationProperty Name="Mrecords1" Relationship="RecordsDBModel.FK_Mrecord_ToGenre" FromRole="Genre" ToRole="Mrecord" />
         </EntityType>
         <EntityType Name="Label">
           <Key>
@@ -294,25 +287,19 @@
           <Property Name="ArtistId" Type="Int32" />
           <Property Name="CountryId" Type="Int32" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ReleaseID" Type="Int32" />
+          
           <Property Name="LabelId" Type="Int32" />
           <Property Name="FormatID" Type="Int32" />
           <NavigationProperty Name="Artist" Relationship="Self.FK_Mrecord_ToArtist" FromRole="Mrecord" ToRole="Artist" />
           <NavigationProperty Name="Country" Relationship="Self.FK_Mrecord_ToCountry" FromRole="Mrecord" ToRole="Country" />
           <NavigationProperty Name="Format" Relationship="Self.FK_Mrecord_ToFormat" FromRole="Mrecord" ToRole="Format" />
           <NavigationProperty Name="Label" Relationship="Self.FK_Mrecord_ToLabel" FromRole="Mrecord" ToRole="Label" />
-          <NavigationProperty Name="Release" Relationship="Self.FK_Mrecord_Release" FromRole="Mrecord" ToRole="Release" />
           <NavigationProperty Name="Genres" Relationship="Self.RecordGenre" FromRole="Mrecord" ToRole="Genre" />
           <NavigationProperty Name="Tracks" Relationship="Self.RecordTracks" FromRole="Mrecord" ToRole="Track" />
-        </EntityType>
-        <EntityType Name="Release">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Month" Type="DateTime" Precision="3" />
-          <Property Name="Year" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Mrecords" Relationship="Self.FK_Mrecord_Release" FromRole="Release" ToRole="Mrecord" />
+          <Property Name="GenreID" Type="Int32" />
+          <NavigationProperty Name="Genre" Relationship="RecordsDBModel.FK_Mrecord_ToGenre" FromRole="Mrecord" ToRole="Genre" />
+          <Property Name="ReleaseMonth" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ReleaseYear" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Track">
           <Key>
@@ -370,18 +357,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Mrecord_Release">
-          <End Role="Release" Type="Self.Release" Multiplicity="0..1" />
-          <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Release">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Mrecord">
-              <PropertyRef Name="ReleaseID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RecordGenre">
           <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
           <End Role="Mrecord" Type="Self.Mrecord" Multiplicity="*" />
@@ -397,7 +372,6 @@
           <EntitySet Name="Genres" EntityType="Self.Genre" />
           <EntitySet Name="Labels" EntityType="Self.Label" />
           <EntitySet Name="Mrecords" EntityType="Self.Mrecord" />
-          <EntitySet Name="Releases" EntityType="Self.Release" />
           <EntitySet Name="Tracks" EntityType="Self.Track" />
           <AssociationSet Name="FK_Mrecord_ToArtist" Association="Self.FK_Mrecord_ToArtist">
             <End Role="Artist" EntitySet="Artists" />
@@ -415,10 +389,6 @@
             <End Role="Label" EntitySet="Labels" />
             <End Role="Mrecord" EntitySet="Mrecords" />
           </AssociationSet>
-          <AssociationSet Name="FK_Mrecord_Release" Association="Self.FK_Mrecord_Release">
-            <End Role="Release" EntitySet="Releases" />
-            <End Role="Mrecord" EntitySet="Mrecords" />
-          </AssociationSet>
           <AssociationSet Name="RecordGenre" Association="Self.RecordGenre">
             <End Role="Genre" EntitySet="Genres" />
             <End Role="Mrecord" EntitySet="Mrecords" />
@@ -427,7 +397,23 @@
             <End Role="Mrecord" EntitySet="Mrecords" />
             <End Role="Track" EntitySet="Tracks" />
           </AssociationSet>
+          <AssociationSet Name="FK_Mrecord_ToGenre" Association="RecordsDBModel.FK_Mrecord_ToGenre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Mrecord" EntitySet="Mrecords" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Mrecord_ToGenre">
+          <End Type="RecordsDBModel.Genre" Role="Genre" Multiplicity="0..1" />
+          <End Type="RecordsDBModel.Mrecord" Role="Mrecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mrecord">
+              <PropertyRef Name="GenreID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -478,22 +464,15 @@
           <EntitySetMapping Name="Mrecords">
             <EntityTypeMapping TypeName="RecordsDBModel.Mrecord">
               <MappingFragment StoreEntitySet="Mrecord">
+                <ScalarProperty Name="ReleaseYear" ColumnName="ReleaseYear" />
+                <ScalarProperty Name="ReleaseMonth" ColumnName="ReleaseMonth" />
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ArtistId" ColumnName="ArtistId" />
                 <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ReleaseID" ColumnName="ReleaseID" />
                 <ScalarProperty Name="LabelId" ColumnName="LabelId" />
                 <ScalarProperty Name="FormatID" ColumnName="FormatID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Releases">
-            <EntityTypeMapping TypeName="RecordsDBModel.Release">
-              <MappingFragment StoreEntitySet="Release">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Month" ColumnName="Month" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

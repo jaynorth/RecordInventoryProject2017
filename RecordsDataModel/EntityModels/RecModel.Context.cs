@@ -31,7 +31,6 @@ namespace RecordsDataModel.EntityModels
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Label> Labels { get; set; }
         public virtual DbSet<Mrecord> Mrecords { get; set; }
-        public virtual DbSet<Release> Releases { get; set; }
         public virtual DbSet<Track> Tracks { get; set; }
     }
 }
