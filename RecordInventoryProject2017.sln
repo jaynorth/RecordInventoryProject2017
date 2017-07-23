@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RI.WPF", "RecordsWPF\RI.WPF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RI.BL", "Viewmodel\RI.BL.csproj", "{1C5B9AB2-11B1-4129-9116-CB5B5BF0E6AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RI.Repo", "RI.Repo\RI.Repo.csproj", "{0A5B3A14-F595-4C4D-A7CA-2C0631375751}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test Projects", "Test Projects", "{232DF3C8-47A9-4F11-A44C-AAEE091635E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RI.BLTests", "RI.BLTests\RI.BLTests.csproj", "{17D6A306-A547-4363-8AE6-EFAF20C53FF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +31,15 @@ Global
 		{1C5B9AB2-11B1-4129-9116-CB5B5BF0E6AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C5B9AB2-11B1-4129-9116-CB5B5BF0E6AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C5B9AB2-11B1-4129-9116-CB5B5BF0E6AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A5B3A14-F595-4C4D-A7CA-2C0631375751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A5B3A14-F595-4C4D-A7CA-2C0631375751}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A5B3A14-F595-4C4D-A7CA-2C0631375751}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A5B3A14-F595-4C4D-A7CA-2C0631375751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D6A306-A547-4363-8AE6-EFAF20C53FF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D6A306-A547-4363-8AE6-EFAF20C53FF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D6A306-A547-4363-8AE6-EFAF20C53FF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D6A306-A547-4363-8AE6-EFAF20C53FF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{17D6A306-A547-4363-8AE6-EFAF20C53FF3} = {232DF3C8-47A9-4F11-A44C-AAEE091635E0}
 	EndGlobalSection
 EndGlobal

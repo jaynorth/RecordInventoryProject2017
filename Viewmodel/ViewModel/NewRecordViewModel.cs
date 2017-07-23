@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Viewmodel.Repository;
 using Viewmodel.ViewModel.Helpers;
 
 namespace Viewmodel.ViewModel
@@ -23,15 +24,77 @@ namespace Viewmodel.ViewModel
         {
             _listArtists = new ObservableCollection<Artist>(_context.Artists
                 .OrderBy(a => a.Title));
-            AddNew = new RelayCommand<string>((s) => Add(s));
+            AddNewArtist = new RelayCommand<string>((s) => AddArtist(s));
+            _listGenres = new ObservableCollection<Genre>(_context.Genres
+                .OrderBy(g => g.Name));
+            AddNewGenre = new RelayCommand<string>((s) => AddGenre(s));
+
+            _listLabels = new ObservableCollection<Label>(_context.Labels
+               .OrderBy(g => g.Name));
+            AddNewLabel = new RelayCommand<string>((s) => AddLabel(s));
+
+            _listCountries = new ObservableCollection<Country>(_context.Countries
+               .OrderBy(g => g.Name));
+            AddNewCountry = new RelayCommand<string>((s) => AddCountry(s));
+
+            MonthsArray = new string[] { "Unknown", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "december" };
+
+            _listRecords = new ObservableCollection<Mrecord>(_context.Mrecords);
+            Mrecord newRecord = new Mrecord();
+            newRecord.ID = -1;
+
+            AddNewRecord = new RelayCommand(AddRecord);
+
+            
+
         }
 
-        public RelayCommand<string> AddNew { get; set; }
+        public RelayCommand<string> AddNewArtist { get; set; }
+        public RelayCommand<string> AddNewGenre { get; set; }
+
+        public RelayCommand<string> AddNewLabel { get; set; }
+        public RelayCommand<string> AddNewCountry { get; set; }
+
+        public RelayCommand AddNewRecord { get; set; }
 
         public void Test(String text)
         {
             Console.WriteLine("this is a test in console: " + text);
-        } 
+        }
+
+        private ObservableCollection<Genre> _listGenres;
+
+        public ObservableCollection<Genre> ListGenres
+        {
+            get { return _listGenres; }
+            set
+            {
+                _listGenres = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+        private ObservableCollection<Country> _listCountries;
+
+        public ObservableCollection<Country> ListCountries
+        {
+            get { return _listCountries; }
+            set {
+                _listCountries = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<Mrecord> _listRecords;
+
+        public ObservableCollection<Mrecord> ListRecords
+        {
+            get { return _listRecords; }
+            set { _listRecords = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         private ObservableCollection<Artist> _listArtists;
@@ -42,45 +105,82 @@ namespace Viewmodel.ViewModel
             set
             {
                 _listArtists = value;
-              // OnPropertyChanged();
+              OnPropertyChanged();
+                
             }
         }
 
-        public void Add(String name)
+        private ObservableCollection<Label> _listLabels;
+
+        public ObservableCollection<Label> ListLabels
         {
-            if (string.IsNullOrWhiteSpace(name))
+            get { return _listLabels; }
+            set
+            {
+                _listLabels = value;
+                OnPropertyChanged();
+
+            }
+        }
+
+
+        public void AddArtist(String artistName)
+        {
+            ProcessStringInput(artistName);
+
+            ArtistRepository ar = new ArtistRepository();
+
+            ar.Add(artistName, ListArtists);
+
+        }
+
+        public void AddLabel(String labelName)
+        {
+            ProcessStringInput(labelName);
+
+            LabelRepository lr = new LabelRepository();
+
+            lr.Add(labelName, ListLabels);
+
+        }
+
+        public void AddCountry(String countryName)
+        {
+            ProcessStringInput(countryName);
+
+            CountryRepository cr = new CountryRepository();
+
+            cr.Add(countryName, ListCountries);
+
+         }
+
+        public void AddRecord()
+        {
+
+        }
+
+        private void ProcessStringInput(String s)
+        {
+            if (string.IsNullOrWhiteSpace(s))
             {
                 throw new ArgumentException("name should not be empty", "name");
             }
 
-            //process string
-            name = name.Trim();
-
-            bool existInList = false;
-
-            foreach (var artist in ListArtists)
-            {
-                if (artist.Title.ToUpper() == name.ToUpper())
-                {
-                    existInList = true;
-                    break;
-                }
-            }
-
-            if (existInList)
-            {
-                throw new ArgumentException("name already is in the list", "name");
-            }
-
-            Artist a = new Artist();
-            a.Title = name;
-
-            _context.Artists.Add(a);
-            _listArtists.Add(a);
-            _listArtists.OrderBy(l => l.Title);
-            _context.SaveChanges();
-           // Init();
+            s = s.Trim();
         }
+
+        public void AddGenre(String genreName)
+        {
+
+            ProcessStringInput(genreName);
+
+            GenreRepository gr = new GenreRepository();
+
+            gr.Add(genreName, ListGenres);
+
+        }
+
+        public string[] MonthsArray { get; set; }
 
 
     }

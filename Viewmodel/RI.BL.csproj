@@ -72,6 +72,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repository\CountryRepository.cs" />
+    <Compile Include="Repository\LabelRepository.cs" />
+    <Compile Include="Repository\GenreRepository.cs" />
+    <Compile Include="Repository\ArtistRepository.cs" />
     <Compile Include="ViewModel\Helpers\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\NewRecordViewModel.cs" />
@@ -83,10 +87,6 @@
     <ProjectReference Include="..\RecordsDataModel\RI.Data.csproj">
       <Project>{70d86f38-5364-44a9-bfda-0bd74b2ec40f}</Project>
       <Name>RI.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RI.Repo\RI.Repo.csproj">
-      <Project>{0a5b3a14-f595-4c4d-a7ca-2c0631375751}</Project>
-      <Name>RI.Repo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

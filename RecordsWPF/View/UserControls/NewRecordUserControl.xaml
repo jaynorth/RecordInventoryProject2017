@@ -4,20 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RecordsWPF.View.UserControls"
+        
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
     <Grid ShowGridLines="True">
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -27,13 +34,50 @@
         </Grid.ColumnDefinitions>
         <Label Name="lblID" Content="ID" Grid.Row="0" Grid.Column="1"></Label>
         <TextBox Text="{Binding CurrentRecord.ID}" Grid.Row="0" Grid.Column="2"></TextBox>
+        <!-- Artist -->
         <Label Name="lbArtist" Content="Select Artist" Grid.Row="1" Grid.Column="1"></Label>
         <ComboBox Name="artistsCombo" Grid.Row="1" Grid.Column="2" ItemsSource="{Binding ListArtists}" DisplayMemberPath="Title"   ></ComboBox>
         <Label  Content="Or Add a new" Grid.Row="2" Grid.Column="1"></Label>
+        <TextBox Name="artistTextBox" Text="" Grid.Row="2" Grid.Column="2" ></TextBox>
+        <Button Grid.Row="2" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewArtist}" CommandParameter="{Binding ElementName=artistTextBox,Path=Text}"></Button>
+        <!-- Album Name -->
+        <Label  Content="Album/Single Title" Grid.Row="3" Grid.Column="1"></Label>
         
-            <TextBox Name="artistTextBox" Text="" Grid.Row="2" Grid.Column="2" ></TextBox>
-        <Button Grid.Row="2" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNew}" CommandParameter="{Binding ElementName=artistTextBox,Path=Text}"></Button>
+        <TextBox Name="albumNameTextBox" Text="" Grid.Row="3" Grid.Column="2" ></TextBox>
+       
+        <!-- Genre -->
+        <Label  Content="Select a Genre" Grid.Row="4" Grid.Column="1"></Label>
+        <ComboBox Name="genresCombo" Grid.Row="4" Grid.Column="2" ItemsSource="{Binding ListGenres}" SelectedItem="{Binding NewRecord.Genre}" DisplayMemberPath="Name"   ></ComboBox>
+        <Label  Content="Or Add a new one" Grid.Row="5" Grid.Column="1"></Label>
+        <TextBox Name="genreTextBox" Grid.Row="5" Grid.Column="2" ></TextBox>
+        <Button Grid.Row="4" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewGenre}" CommandParameter="{Binding ElementName=genreTextBox,Path=Text}"></Button>
+        <!-- Label -->
+        <Label  Content="Select a Label" Grid.Row="6" Grid.Column="1"></Label>
+        <ComboBox Name="labelsCombo" Grid.Row="6" Grid.Column="2" ItemsSource="{Binding ListLabels}" DisplayMemberPath="Name"   ></ComboBox>
+        <Label  Content="Or Add a new one" Grid.Row="7" Grid.Column="1"></Label>
+        <TextBox Name="labelTextBox" Grid.Row="7" Grid.Column="2"></TextBox>
+        <Button Grid.Row="6" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewLabel}" CommandParameter="{Binding ElementName=labelTextBox,Path=Text}"></Button>
+        <!-- Country -->
+        <Label  Content="Select a Country" Grid.Row="8" Grid.Column="1"></Label>
+        <ComboBox Name="countriesCombo" Grid.Row="8" Grid.Column="2" ItemsSource="{Binding ListCountries}" DisplayMemberPath="Name"   ></ComboBox>
+        <Label  Content="Or Add a new one" Grid.Row="9" Grid.Column="1"></Label>
+        <TextBox Name="countryTextBox" Grid.Row="9" Grid.Column="2"></TextBox>
+        <Button Grid.Row="8" Grid.Column="2" Content="Add" Width="30" HorizontalAlignment="Right" Command="{Binding AddNewCountry}" CommandParameter="{Binding ElementName=countryTextBox,Path=Text}"></Button>
+
+        <!-- Release-->
+        <Label  Content="Release Date" Grid.Row="10" Grid.Column="1"></Label>
+        <StackPanel  Grid.Row="10" Grid.Column="2" Orientation="Horizontal">
+            <Label Content="Month"></Label>
+            <ComboBox Name="ReleaseMonthCombo"  ItemsSource="{Binding MonthsArray}" Width="80" HorizontalAlignment="Left"  ></ComboBox>
+            <Label Content="Year"></Label>
+            <TextBox Name="releaseYear" Width="80" HorizontalAlignment="Right"></TextBox>
+
+        </StackPanel>
         
+        <!-- Save and Add Record Info Button-->
+        <Button Content="Save" Grid.Row="12" Grid.Column="2" Width="50  " HorizontalAlignment="Center" Command="{Binding AddNewRecord}" ></Button>
+        
+
         <!--
         <Label Name="lblAlbum" Content="Album" Grid.Row="2" Grid.Column="1"></Label>
         <TextBox Text="{Binding CurrentRecord.Title}" Grid.Row="2" Grid.Column="2"></TextBox>
@@ -44,10 +88,7 @@
             <Label  Content="Speed" ></Label>
             <TextBox Text="{Binding CurrentRecord.Format.Speed}" ></TextBox>
         </WrapPanel>
-        <Label Name="lblGenre" Content="Genre" Grid.Row="4" Grid.Column="1"></Label>
-        <TextBox Text="{Binding CurrentRecord.Genre.Name}" Grid.Row="4" Grid.Column="2"></TextBox>
-        <Label Name="lblLabel" Content="Label" Grid.Row="5" Grid.Column="1"></Label>
-        <TextBox Text="{Binding CurrentRecord.Label.Name}" Grid.Row="5" Grid.Column="2"></TextBox>
+
         <Label Name="lblRelease" Content="Release" Grid.Row="6" Grid.Column="1"></Label>
         <TextBox Text="{Binding CurrentRecord.ReleaseID}" Grid.Row="6" Grid.Column="2"></TextBox>
         <Label Name="lblCountry" Content="Country" Grid.Row="7" Grid.Column="1"></Label>
